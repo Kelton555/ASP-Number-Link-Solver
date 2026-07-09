@@ -7,8 +7,12 @@ start_cell(C) :- cell_number(C, _).
 % there must be exactly 2 cells of every number on the board
 :- #count{C: cell_number(C, N)} != 2, number(N).
 
-% each edge can be assigned exactly 1 number, or no number at all
-{edge_number(A, B, N): number(N)} <= 1 :- edge(A, B), A<B.
+% each non-start edge can be assigned exactly 1 number, or no number at all
+{edge_number(A, B, N): number(N)} <= 1 :- edge(A, B), not start_cell(A), not start_cell(B), A<B.
+
+% each start cell has exactly one edge number
+{edge_number(A, B, N): edge(A, B)} = 1 :- cell_number(A, N).
+
 % reflexive
 edge_number(B, A, N) :- edge_number(A, B, N).
 
