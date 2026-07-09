@@ -12,6 +12,7 @@ state = {
     'xSize': tkinter.IntVar(value=5),
     'ySize': tkinter.IntVar(value=5),
     'board': [],
+    'threads': tkinter.IntVar(value=1),
 }
 
 # colors to distinguish between up to 10 numbers
@@ -172,15 +173,24 @@ def solveBoard():
                         file.write(f"num_at({n},{col+1},{row+1}). ")
                     except:
                         continue
-                
+      
     files = [
         "solver.lp",
         "simple_rectangle.lp",
         "_facts.lp",
     ]
 
+    # safe reading for thread count, default to 1
+    threadCount = 1
+    try:
+        t = state['threads'].get()
+        if t > 0:
+            threadCount = t
+    except:
+        pass
+
     print('solving...')
-    answers: clyngor.Answers = solve(files, nb_model=1)
+    answers: clyngor.Answers = solve(files, nb_model=1, options=f'-t {threadCount}')
 
     # this is the line that gets stalled on during the solving process
     for answer in answers.by_predicate:
@@ -204,22 +214,29 @@ def solveBoard():
             for cellNum in answer["cell_number"]:
                 pos = cellToRowColIndex(cellNum[0])
                 board[pos[0]][pos[1]].set(cellNum[1])
+            # this code is also only relevant when running a pre-made fact file
+            for bridge in answer['bridge']:
+                pos = cellToRowColIndex(bridge[0])
+                board[pos[0]][pos[1]].set("B")
             # draws a line for all of the connections
             for edgeNum in answer["edge_number"]:
                 drawLine(edgeNum[0], edgeNum[1], edgeNum[2])
         break
 
+    print(answers.statistics)
+
     # this has to be here, since the solving process happens on the above "answer in answers" line
     if answers.is_unsatisfiable:
         print('unsatisfiable')
-
-    print(answers.statistics)
 
 ttk.Label(mainFrame, text="X Size:").grid(column=0, row=0)
 ttk.Entry(mainFrame, textvariable=state["xSize"], width=5).grid(column=0, row=1)
 
 ttk.Label(mainFrame, text="Y Size:").grid(column=0, row=2)
 ttk.Entry(mainFrame, textvariable=state["ySize"], width=5).grid(column=0, row=3)
+
+ttk.Label(mainFrame, text="Solving Threads:").grid(column=0, row=4)
+ttk.Entry(mainFrame, textvariable=state["threads"], width=5).grid(column=0, row=5)
 
 ttk.Button(mainFrame, text="Clear", command=makeBlankBoard).grid(column=0, row=8)
 ttk.Button(mainFrame, text="Solve", command=solveBoard).grid(column=0, row=9)
