@@ -146,7 +146,7 @@ makeBlankBoard()
 #  generates a facts file based on numbers entered into the gui
 #  runs the solver using this file
 #  uses the results of the solver to draw lines or announce unsatisfiability
-def solve():
+def solveBoard():
     clearCanvas()
 
     with open("_facts.lp", "w") as file:
@@ -222,6 +222,6 @@ ttk.Label(mainFrame, text="Y Size:").grid(column=0, row=2)
 ttk.Entry(mainFrame, textvariable=state["ySize"], width=5).grid(column=0, row=3)
 
 ttk.Button(mainFrame, text="Clear", command=makeBlankBoard).grid(column=0, row=8)
-ttk.Button(mainFrame, text="Solve", command=solve).grid(column=0, row=9)
+ttk.Button(mainFrame, text="Solve", command=solveBoard).grid(column=0, row=9)
 
 root.mainloop()
