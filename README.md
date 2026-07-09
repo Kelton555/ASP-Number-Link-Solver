@@ -35,3 +35,6 @@ The simple_rectangle.lp file is used to translate more human-readable input into
 ```num_at(N, X, Y)``` can be used to place a number start/endpoint at position (X, Y) (X=Y=1 is the top left corner)
 
 ```bridge_xy(X, Y)``` can be used to place a bridge at a given (X, Y) position (X=Y=1 is the top left corner)
+
+# Project Policies
+Feel free to report any issues you may come across, I'd be glad to take a look and attempt fixes. Also feel free to contribute if you'd like; I may also create translation layers and GUI support for other types of boards at a later date
