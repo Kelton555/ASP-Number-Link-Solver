@@ -38,3 +38,5 @@ The simple_rectangle.lp file is used to translate more human-readable input into
 
 # Project Policies
 Feel free to report any issues you may come across, I'd be glad to take a look and attempt fixes. Also feel free to contribute if you'd like; I may also create translation layers and GUI support for other types of boards at a later date
+
+Note that required dependencies may have different license policies than my code. Everything directly contained in this repository is my own original work and falls under the MIT license; refer to the policies of other projects as necessary.
