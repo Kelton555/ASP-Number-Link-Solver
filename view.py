@@ -182,8 +182,6 @@ class SolverGui:
                             walls.append(wallToBe)
                             wallIds[wallToBe] = canvas.create_line(x0, y0, x1, y1, fill='red', width=5)
 
-                print(event.x, event.y)
-
     # clears all lines from the canvas
     def __clearCanvas(self):
         self.state['canvas'].delete('all')
