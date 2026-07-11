@@ -13,7 +13,7 @@ bridge(C) :- cell(C), x_size(XS), bridge_xy(X, Y), C=X+((Y-1)*XS), board_type(si
 % convert XY wall coordinates to wall predicate
 wall(C1, C2) :- wall_xy(X1, Y1, X2, Y2), cell(C1), cell(C2), x_size(XS), C1=X1+((Y1-1)*XS), C2=X2+((Y2-1)*XS), board_type(simple_rectangle).
 % walls are reflexive
-wall(C2, C1) :- wall(C1, C2).
+wall(C2, C1) :- wall(C1, C2), board_type(simple_rectangle).
 
 % define edges based on rectangle layout (accounting for in-board walls)
 % horizontal connections
