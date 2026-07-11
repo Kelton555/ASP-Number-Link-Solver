@@ -1,8 +1,9 @@
 # How To Use
-View.py is a tkinter-based GUI program to interface with the solver, only working in the very simple rectangle case (no interior walls, no disconnects, etc.).
+View.py is a tkinter-based GUI program to interface with the solver, only working in the very simple rectangle case (no disconnects, etc.).
 
-Enter numbers into the grid in the GUI as the start/end points of links. You can also enter 'B' or 'b' into a cell to indicate a bridge.
-Click 'Solve' to start the solving process; lines will be drawn indicating a solution when the solving is complete.
+Enter numbers (or the listed letters) into the grid in the GUI as the start/end points of links. You can also enter 'B' or 'b' into a cell to indicate a bridge. You can click in the space between cells to toggle walls, preventing adjacent cells from being connected.
+
+Enter a number of threads to use in solving if you'd like, then click 'Solve' to start the solving process; lines will be drawn indicating a solution when the solving is complete.
 
 The console will log if a situation is unsatisfiable, as well as stats about the solving.
 
@@ -11,7 +12,7 @@ The solver.lp file is where the choice and solving happens. The solver works bas
 (I believe the solver is theoretically capable of solving anything from the Flow series of mobile games: this includes the stranger cases of hexes, shapes, and warps)
 
 The simple_rectangle.lp file is used to translate more human-readable input into predicates used for the solver, making assumptions based specifically on the simple rectangle case.
-(Cells are connected by edges by being directly adjacent in all cases; bridges always connect above to below and left to right; borders of the board don't wrap; etc.)
+(Cells are connected by edges by being directly adjacent; bridges always connect above to below and left to right; borders of the board don't wrap; etc.)
 
 # ASP Solver Predicate Structure
 ```cell(C)``` indicates the ID of a valid cell
@@ -35,6 +36,8 @@ The simple_rectangle.lp file is used to translate more human-readable input into
 ```num_at(N, X, Y)``` can be used to place a number start/endpoint at position (X, Y) (X=Y=1 is the top left corner)
 
 ```bridge_xy(X, Y)``` can be used to place a bridge at a given (X, Y) position (X=Y=1 is the top left corner)
+
+```wall_xy(X1, Y1, X2, Y2)``` can be used to place a wall between cells (X1, Y1) and (X2, Y2), preventing them from being connected even when they're adjacent
 
 # Project Policies
 Feel free to report any issues you may come across, I'd be glad to take a look and attempt fixes. Also feel free to contribute if you'd like; I may also create translation layers and GUI support for other types of boards at a later date
