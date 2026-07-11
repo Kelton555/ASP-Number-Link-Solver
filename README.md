@@ -1,3 +1,9 @@
+<img width="30%" alt="A solved 11x11 number link puzzle with bridges featuring a ring of walls with 4 gaps. Part of the Courtyard Pack from Flow Free: Bridges" src="https://github.com/user-attachments/assets/22a94b39-3fb4-4974-92f4-5fc12fcc0ade" />
+
+<img width="30%" alt="A solved 9x11 number link puzzle with bridges featuring excluded cells. Part of the Hourglass Pack from Flow Free: Bridges" src="https://github.com/user-attachments/assets/d2968858-5276-47d0-a613-727f9a8119e3" />
+
+<img width="30%" alt="A solved 12x12 number link puzzle with bridges featuring pockets of walls around certain cells. Part of the Pockets Pack from Flow Free: Bridges" src="https://github.com/user-attachments/assets/5d777878-fb67-4ff1-9835-89ab5ea35e23" />
+
 # How To Use
 View.py is a tkinter-based GUI program to interface with the solver, only working in the very simple rectangle case (no disconnects, etc.).
 
