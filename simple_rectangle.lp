@@ -4,8 +4,14 @@
 % calculate amount of tiles
 tile_count(Z) :- Z=X*Y, x_size(X), y_size(Y), board_type(simple_rectangle).
 
-% define cells
-cell(1..Y) :- tile_count(Y), board_type(simple_rectangle).
+% exclude cells from the board, allowing for interior missing cells
+excluded(C) :- excluded_xy(X, Y), x_size(XS), C=X+((Y-1)*XS), board_type(simple_rectangle).
+
+% define potential cells
+potential_cell(1..Y) :- tile_count(Y), board_type(simple_rectangle).
+
+% cells are potential cells - excluded cells
+cell(C) :- potential_cell(C), not excluded(C), board_type(simple_rectangle).
 
 % convert XY bridge coordinate to bridge predicate
 bridge(C) :- cell(C), x_size(XS), bridge_xy(X, Y), C=X+((Y-1)*XS), board_type(simple_rectangle).
