@@ -33,8 +33,6 @@ The simple_rectangle.lp file is used to translate more human-readable input into
 
 ```edge_number(A, B, N)``` indicates that the edge between cell A and cell B is used for the linking the number N
 
-```excluded_xy(X, Y)``` indicates that the cell at (X, Y) in the grid doesn't exist, allowing for interior gaps in a simple rectangle
-
 # Fact Structure for Simple Rectangle Translator
 ```board_type(simple_rectangle).``` must be declared as a fact to utilize the simple rectangle translation file
 
@@ -46,6 +44,8 @@ The simple_rectangle.lp file is used to translate more human-readable input into
 ```bridge_xy(X, Y)``` can be used to place a bridge at a given (X, Y) position (X=Y=1 is the top left corner)
 
 ```wall_xy(X1, Y1, X2, Y2)``` can be used to place a wall between cells (X1, Y1) and (X2, Y2), preventing them from being connected even when they're adjacent
+
+```excluded_xy(X, Y)``` indicates that the cell at (X, Y) in the grid doesn't exist, allowing for interior gaps in a simple rectangle
 
 # Project Policies
 Feel free to report any issues you may come across, I'd be glad to take a look and attempt fixes. Also feel free to contribute if you'd like; I may also create translation layers and GUI support for other types of boards at a later date
