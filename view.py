@@ -119,7 +119,7 @@ class SolverGui:
         self.__makeBlankBoard()
 
         # static label describing color coersion
-        colorLabelStr = "R/r=red; G=green, g=gray; O=orange, o=brown; Y/y=yellow; P=purple, p=pink; C=blue, c=cyan\n\nB/b=bridge"
+        colorLabelStr = "R/r=red; G=green, g=gray; O=orange, o=brown; Y/y=yellow; P=purple, p=pink; C=blue, c=cyan\n\nB/b=bridge; E/e=excluded"
         colorLabel = ttk.Label(self.mainFrame, text=colorLabelStr, justify='center', wraplength=150)
         colorLabel.grid(column=3, row=13)
         save(colorLabel)
@@ -333,6 +333,8 @@ class SolverGui:
                             # bridges
                             if n in ["B", "b"]:
                                 file.write(f"bridge_xy({col+1},{row+1}). ")
+                            elif n in ["E", "e"]:
+                                file.write(f"excluded_xy({col+1},{row+1}). ")
                             # not blank, check if it's a known char->num
                             elif n in char2num:
                                 file.write(f"num_at({char2num[n]},{col+1},{row+1}). ")
