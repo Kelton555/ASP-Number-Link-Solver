@@ -5,7 +5,7 @@
 <img width="30%" alt="A solved 12x12 number link puzzle with bridges featuring pockets of walls around certain cells. Part of the Pockets Pack from Flow Free: Bridges" src="https://github.com/user-attachments/assets/5d777878-fb67-4ff1-9835-89ab5ea35e23" />
 
 # How To Use
-View.py is a tkinter-based GUI program to interface with the solver, only working in the very simple rectangle case (no disconnects, etc.).
+View.py is a tkinter-based GUI program to interface with the solver, only working in the very simple rectangle case.
 
 Enter numbers (or the listed letters) into the grid in the GUI as the start/end points of links. You can also enter 'B' or 'b' into a cell to indicate a bridge. You can click in the space between cells to toggle walls, preventing adjacent cells from being connected.
 
@@ -32,6 +32,8 @@ The simple_rectangle.lp file is used to translate more human-readable input into
 ```traversable(B, C1, C2)``` indicates that C1 can traverse to C2 via bridge B (and vice-versa)
 
 ```edge_number(A, B, N)``` indicates that the edge between cell A and cell B is used for the linking the number N
+
+```excluded_xy(X, Y)``` indicates that the cell at (X, Y) in the grid doesn't exist, allowing for interior gaps in a simple rectangle
 
 # Fact Structure for Simple Rectangle Translator
 ```board_type(simple_rectangle).``` must be declared as a fact to utilize the simple rectangle translation file
